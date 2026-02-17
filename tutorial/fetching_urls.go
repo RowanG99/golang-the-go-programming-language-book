@@ -15,9 +15,7 @@ func main(){
 	 fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
 	}
 
-	dst := os.Stdout
-
-	bytes, err := io.Copy(dst, resp.Body)
+	bytes, err := io.Copy(os.Stdout, resp.Body)
 	resp.Body.Close()
 
 	if err != nil {
