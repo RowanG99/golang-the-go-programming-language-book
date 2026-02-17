@@ -5,10 +5,15 @@ import (
     "io"
     "net/http"
     "os"
+    "strings"
 )
 
 func main(){
     for _, url := range os.Args[1:]{
+	if !strings.HasPrefix(url, "https://"){
+	    url = "https://" + url
+	}
+
 	resp, err := http.Get(url)
 
 	if err != nil {
@@ -22,7 +27,7 @@ func main(){
 	 fmt.Fprintf(os.Stderr, "Copy: %v\n", err)
 	}
 
-	fmt.Printf("%s", bytes)	
+	fmt.Printf("%s",bytes)	
     }
 //    for _, url := range os.Args[1:]{
 //        resp, err := http.Get(url)
@@ -30,6 +35,8 @@ func main(){
 // 	   fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
 // 	   os.Exit(1)
 //        }
+//	  
+//	  fmt.Printf("%s\n", resp.Status)
 // 
 //        b, err := ioutil.ReadAll(resp.Body)
 //        resp.Body.Close()
