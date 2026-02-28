@@ -10,7 +10,7 @@ import (
 
 func main(){
     for _, url := range os.Args[1:]{
-	if !strings.HasPrefix(url, "https://"){
+	    if !strings.HasPrefix(url, "https://") && !strings.HasPrefix(url, "http://"){
 	    url = "https://" + url
 	}
 
@@ -27,7 +27,7 @@ func main(){
 	 fmt.Fprintf(os.Stderr, "Copy: %v\n", err)
 	}
 
-	fmt.Printf("%s",bytes)	
+	fmt.Printf("%d",bytes)	
     }
 //    for _, url := range os.Args[1:]{
 //        resp, err := http.Get(url)
